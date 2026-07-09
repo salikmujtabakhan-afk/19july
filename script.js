@@ -569,20 +569,13 @@ whiteHeart.addEventListener(
 
     setTimeout(()=>{
 
+    if(sunflowerReveal){
 
-        if(sunflowerReveal){
+        sunflowerReveal.classList.add("show");
 
+    }
 
-            sunflowerReveal.classList.add(
-                "show"
-            );
-
-
-        }
-
-
-
-        createPetals();
+},1200);
 
 
 
@@ -736,7 +729,8 @@ continueTimeline.addEventListener(
 ()=>{
 
 
-    goToScene(4);
+    document.body.classList.add("sceneChanging");
+    document.body.classList.remove("sceneChanging");
 
 
 
@@ -1227,7 +1221,14 @@ function openMemory(memory){
     memory.text;
 
 
+memoryModal.style.opacity="0";
+requestAnimationFrame(()=>{
 
+memoryModal.style.opacity="1";
+
+memoryModal.classList.add("show");
+
+});
     memoryModal.classList.add(
     "show"
     );
@@ -1465,6 +1466,25 @@ openMusicBox.addEventListener(
 
 
 function playBirthdayMusic(){
+
+if(!birthdaySong)
+return;
+
+birthdaySong.pause();
+
+birthdaySong.currentTime=0;
+
+birthdaySong.volume=.45;
+
+birthdaySong.play()
+
+.catch(error=>{
+
+console.log(error);
+
+});
+
+}
 
 
 
@@ -1897,7 +1917,8 @@ continueCake.addEventListener(
 // ==========================================
 
 
-const makeWish =
+const openGift=
+document.getElementById("openGift");
 document.getElementById(
 "makeWish"
 );
@@ -2361,7 +2382,28 @@ goToScene=function(number){
         setTimeout(()=>{
 
 
-            startFinalReveal();
+            loveReveal.style.opacity="0";
+
+finalMessage.style.opacity="0";
+
+signature.style.opacity="0";
+setTimeout(()=>{
+
+loveReveal.style.opacity="1";
+
+},1000);
+
+setTimeout(()=>{
+
+finalMessage.style.opacity="1";
+
+},2500);
+
+setTimeout(()=>{
+
+signature.style.opacity="1";
+
+},4000);
 
 
         },2000);
